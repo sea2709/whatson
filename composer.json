@@ -45,13 +45,16 @@
         "post-create-project-cmd": [
             "@php artisan key:generate"
         ],
-        "post-autoload-dump": [
+        "post-install-cmd": [
             "mkdir bootstrap/cache",
             "mkdir storage",
             "mkdir storage/framework",
             "mkdir storage/framework/sessions",
             "mkdir storage/framework/views",
             "mkdir storage/framework/cache",
+            "@php artisan cache:clear"
+        ],
+        "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ]
