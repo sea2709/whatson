@@ -46,7 +46,7 @@
             "@php artisan key:generate"
         ],
         "post-autoload-dump": [
-            "chmod -R 777 /tmp/app/bootstrap/cache",
+            "chmod -R 777 bootstrap/cache",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ]
