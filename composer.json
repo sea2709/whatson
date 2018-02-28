@@ -46,10 +46,11 @@
             "@php artisan key:generate"
         ],
         "post-autoload-dump": [
+            "@chmod -R 777 app/bootstrap/cache",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan config:cache",
             "@php artisan package:discover"
         ]
+
     },
     "config": {
         "preferred-install": "dist",
