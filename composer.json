@@ -46,7 +46,6 @@
             "@php artisan key:generate"
         ],
         "post-install-cmd": [
-            "mkdir bootstrap/cache",
             "mkdir storage",
             "mkdir storage/framework",
             "mkdir storage/framework/sessions",
@@ -55,6 +54,7 @@
             "@php artisan cache:clear"
         ],
         "post-autoload-dump": [
+            "mkdir bootstrap/cache",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ]
