@@ -46,12 +46,20 @@
             "@php artisan key:generate"
         ],
         "post-install-cmd": [
-            "mkdir storage",
-            "mkdir storage/framework",
-            "mkdir storage/framework/sessions",
-            "mkdir storage/framework/views",
-            "mkdir storage/framework/cache",
-            "@php artisan cache:clear"
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "mkdir -p bootstrap/cache",
+            "mkdir -p storage/framework/sessions",
+            "mkdir -p storage/framework/views",
+            "mkdir -p storage/framework/cache",
+            "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "mkdir -p bootstrap/cache",
+            "mkdir -p storage/framework/sessions",
+            "mkdir -p storage/framework/views",
+            "mkdir -p storage/framework/cache",
+            "php artisan optimize"
         ],
         "post-autoload-dump": [
             "mkdir bootstrap/cache",

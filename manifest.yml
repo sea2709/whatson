@@ -1,6 +1,10 @@
 applications:
-- name: dang
+- path: .
+  name: dang
   memory: 256M
   buildpack: https://github.com/cloudfoundry/php-buildpack
   timeout: 60
-  random-route: true
+  env:
+      APP_ENV: local
+      APP_DEBUG: true
+      APP_KEY: l7NcbDb0mMNpvAHQHQy7rUmemQsOZbO8
