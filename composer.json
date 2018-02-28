@@ -47,6 +47,7 @@
         ],
         "post-autoload-dump": [
             "mkdir bootstrap/cache",
+            "mkdir storage",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ]
