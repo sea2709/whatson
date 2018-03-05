@@ -7,7 +7,10 @@
 
 require('./bootstrap');
 
+window.moment = require('moment');
 window.Vue = require('vue');
+
+require('vue-resource');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,7 +18,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('chat-component', require('./components/ChatComponent.vue'));
+Vue.component('weather-component', require('./components/WeatherComponent.vue'));
+Vue.component('news-component', require('./components/NewsComponent.vue'));
 
 const app = new Vue({
     el: '#app'
