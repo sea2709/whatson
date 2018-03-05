@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="app" class="app-container">
-    <chat-component :googleMapAPIKey="{{ config('app.googleMapApiKey', '')}}"></chat-component>
+    <chat-component :googleMapAPIKey="'{{ config('app.googleMapApiKey', '')}}'"></chat-component>
 </div>
 <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>

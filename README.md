@@ -59,3 +59,5 @@ Please find the env configuration files
 ## 3rd party libraries used
 > [Guzzle, PHP HTTP client](http://docs.guzzlephp.org/en/stable/)
 > [Laravel Dark Sky](https://packagist.org/packages/naughtonium/laravel-dark-sky)
+> [Skycons](https://darkskyapp.github.io/skycons/)
+> [FontAwesome](https://fontawesome.com/)
