@@ -5,6 +5,7 @@ applications:
   buildpack: https://github.com/cloudfoundry/php-buildpack
   timeout: 120
   env:
+      APP_NAME: What's On, Watson?
       APP_ENV: local
       APP_DEBUG: false
       APP_KEY: l7NcbDb0mMNpvAHQHQy7rUmemQsOZbO8
