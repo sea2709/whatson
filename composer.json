@@ -62,7 +62,7 @@
             "mkdir -p storage/framework/cache"
         ],
         "post-autoload-dump": [
-            "mkdir bootstrap/cache",
+            "mkdir -p bootstrap/cache",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ]
