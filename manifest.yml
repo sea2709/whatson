@@ -3,8 +3,19 @@ applications:
   name: dang
   memory: 256M
   buildpack: https://github.com/cloudfoundry/php-buildpack
-  timeout: 60
+  timeout: 120
   env:
       APP_ENV: local
-      APP_DEBUG: true
+      APP_DEBUG: false
       APP_KEY: l7NcbDb0mMNpvAHQHQy7rUmemQsOZbO8
+      DARKSKY_API_KEY: de5652d5f4d4ed5b74fd2e4c26d22403
+      GOOGLE_MAP_API_KEY: AIzaSyDd4GTsthQjJL2wqyD6JHD1l4ueBHSLRis
+      WATSON_CONVERSATION_WORKSPACE_ID: 54d0c406-42f1-4067-9a63-3147d0c4767d
+      WATSON_CONVERSATION_BASE_URL: https://gateway.watsonplatform.net/conversation/api
+      WATSON_CONVERSATION_API_CREDENTIAL_USERNAME: cb6b9d72-ab47-4541-bae2-dc79069d56ce
+      WATSON_CONVERSATION_API_CREDENTIAL_PASSWORD: qT2GbDdB4jSF
+      WATSON_DISCOVERY_ENVIRONMENT: system
+      WATSON_DISCOVERY_COLLECTION_ID: news-en
+      WATSON_DISCOVERY_BASE_URL: https://gateway.watsonplatform.net/discovery/api
+      WATSON_DISCOVERY_API_CREDENTIAL_USERNAME: 901dc112-1df1-4bcc-933b-07e4d4927ffc
+      WATSON_DISCOVERY_API_CREDENTIAL_PASSWORD: c2B1PRznb0pR
