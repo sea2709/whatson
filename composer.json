@@ -49,20 +49,20 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "@mkdir -p bootstrap/cache",
-            "@mkdir -p storage/framework/sessions",
-            "@mkdir -p storage/framework/views",
-            "@mkdir -p storage/framework/cache"
+            "mkdir -p bootstrap/cache",
+            "mkdir -p storage/framework/sessions",
+            "mkdir -p storage/framework/views",
+            "mkdir -p storage/framework/cache"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "@mkdir -p bootstrap/cache",
-            "@mkdir -p storage/framework/sessions",
-            "@mkdir -p storage/framework/views",
-            "@mkdir -p storage/framework/cache"
+            "mkdir -p bootstrap/cache",
+            "mkdir -p storage/framework/sessions",
+            "mkdir -p storage/framework/views",
+            "mkdir -p storage/framework/cache"
         ],
         "post-autoload-dump": [
-            "@mkdir bootstrap/cache",
+            "mkdir bootstrap/cache",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ]
