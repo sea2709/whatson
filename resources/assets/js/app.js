@@ -21,6 +21,7 @@ require('vue-resource');
 Vue.component('chat-component', require('./components/ChatComponent.vue'));
 Vue.component('weather-component', require('./components/WeatherComponent.vue'));
 Vue.component('news-component', require('./components/NewsComponent.vue'));
+Vue.component('clock-component', require('./components/ClockComponent.vue'));
 
 const app = new Vue({
     el: '#app'

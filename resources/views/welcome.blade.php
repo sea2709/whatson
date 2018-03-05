@@ -11,10 +11,15 @@
 </head>
 <body>
 <div id="app" class="app-container">
+    <!-- call the chat component, include the google map API key  -->
     <chat-component :googleMapAPIKey="'{{ config('app.googleMapApiKey', '')}}'"></chat-component>
 </div>
+
+<!-- include JS files -->
 <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<script src="https://unpkg.com/vue-clock/dist/vue-clock.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/skycons.js') }}"></script>
+
 </body>
 </html>

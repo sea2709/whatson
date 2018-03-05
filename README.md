@@ -43,6 +43,7 @@ Create a new job with this configuration
 Then save the stage, trigger the stage to run. 
 After this staged is finished, your app is deployed to your IBM cloud. 
 Then you can launch your app by visiting the APP URL.
+You can setup to automatically deploy your source code whenever there is a new push on the repository.
 
 ## Further help
 To get more help about deploying a Laravel App to IBM cloud, please checkout 
@@ -61,3 +62,4 @@ Please find the env configuration files
 > [Laravel Dark Sky](https://packagist.org/packages/naughtonium/laravel-dark-sky)
 > [Skycons](https://darkskyapp.github.io/skycons/)
 > [FontAwesome](https://fontawesome.com/)
+> [Google Font Nunito](https://fonts.google.com/specimen/Nunito)

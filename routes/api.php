@@ -99,12 +99,12 @@ Route::get('activities-celebrations', function(Request $request) {
     $groups = [
         0 => [
             "enriched_text.concepts.text:\"celebration\"", // search news relating to celebration
-            "enriched_text.entities.type::\"Location\"", // search news relating to a city
+            "enriched_text.entities.type:\"Location\"", // search news relating to a city
             "enriched_text.entities.disambiguation.name:\"$tokens[0]\""
         ],
         1 => [
             "enriched_text.concepts.text:\"activity\"", // search news relating to activity
-            "enriched_text.entities.type::\"Location\"", // search news relating to a city
+            "enriched_text.entities.type:\"Location\"", // search news relating to a city
             "enriched_text.entities.disambiguation.name:\"$tokens[0]\""
         ]
     ];
@@ -134,7 +134,7 @@ Route::get('activities-celebrations', function(Request $request) {
         'query' => $query,
         'highlight' => 'true',
         'version' => date('Y-m-d'), // get today version
-        'similar' => 'true',
+        'similar' => 'false',
         'count' => 20
     ];
 

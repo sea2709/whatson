@@ -2,7 +2,7 @@
     <div class="row no-gutters">
         <div class="col">
             <div class="chat-box">
-                <div class="chat-content">
+                <div class="chat-content" ref="chatContent">
                     <ul>
                         <li v-for="msg in messages" class="clearfix">
                             <template v-if="msg.isWeatherInfo">
@@ -53,12 +53,13 @@
         </div>
         <div class="col">
             <div class="info-container-fluid">
-                <div class="clearfix">
-                    <div class="float-right">
+                <div class="clearfix position-relative">
+                    <div class="upper-right-box">
                         <div class="current-location h3">
                             <i class="fas fa-map-marker"></i>
                             {{ address }}
                         </div>
+                        <clock-component></clock-component>
                     </div>
                     <div class="float-left">
                         <div class="day h4">
@@ -75,6 +76,8 @@
                     </div>
                     <canvas class="weather-icon" width="128" height="128"></canvas>
                 </div>
+
+
                 <div class="articles-wrapper" v-if="articles">
                     <h2>Recent News in Area</h2>
                     <div class="articles">
@@ -95,8 +98,12 @@
 </template>
 
 <script>
+    /**
+     * The main component of the application
+     */
     export default {
         props: {
+            // google map api key
             googleMapAPIKey: String
         },
 
@@ -118,14 +125,21 @@
                 },
                 messages: [],
                 context: null,
+                // articles on the right panel, display articles relating to celebrations and activities in the city
                 articles: []
             };
         },
         methods: {
+            /**
+             * get current time
+             */
             moment: function () {
                 return moment();
             },
 
+            /**
+             * get user current location
+             */
             getCurrentPosition() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition((position) => {
@@ -138,8 +152,14 @@
                 }
             },
 
+            /**
+             * get current city info and current weather in the city
+             */
             updateCurrentCityAndWeather() {
                 this.getCurrentCity().then(() => {
+                    /**
+                     * get articles about celebrations and activities in the city
+                     */
                     this.getCelebrationsAndActivities().then(data => {
                         for (let article of data.results) {
                             this.articles.push({
@@ -155,9 +175,17 @@
                         }
                     });
                 });
+
+                /**
+                 * get weather information
+                 */
                 this.getWeather();
             },
 
+            /**
+             * get the city name based on the current user lattitude and longitude
+             * @returns {PromiseLike<TResult2|TResult1>|PromiseLike<TResult|T>|PromiseLike<T>|PromiseLike<TResult>}
+             */
             getCurrentCity() {
                 return this.$http.get('https://maps.googleapis.com/maps/api/geocode/json',
                     {
@@ -179,6 +207,11 @@
                     });
             },
 
+            /**
+             * get weather information of a date
+             * @param date
+             * @returns {PromiseLike<TResult2|TResult1>|PromiseLike<TResult|T>|PromiseLike<T>|PromiseLike<TResult>}
+             */
             getWeatherSummaryOfDate(date) {
                 let params = this.position;
                 params.day = date;
@@ -189,6 +222,9 @@
                     });
             },
 
+            /**
+             * get weather information and display weather animation
+             */
             getWeather() {
                 this.$http.get('/api/weather', {params: this.position})
                     .then(response => {
@@ -238,6 +274,10 @@
                     });
             },
 
+            /**
+             * send message to the server and get the response message
+             * @param event
+             */
             enterMessage(event) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -249,12 +289,20 @@
                     isNewsInfo: false
                 });
 
-                this.sendMessage(this.userMessage);
+                this.sendMessage(this.userMessage).then(() => {
+                    // scroll to the end of the chat box
+                    this.$refs.chatContent.scrollTop = this.$refs.chatContent.scrollHeight;
+                });
 
                 this.userMessage = '';
                 this.$refs.input.focus();
             },
 
+            /**
+             * call API send message
+             * @param msg
+             * @returns {PromiseLike<TResult2|TResult1>|PromiseLike<TResult|T>|PromiseLike<T>|PromiseLike<TResult>}
+             */
             sendMessage(msg) {
                 let data = {
                     msg: msg
@@ -282,6 +330,8 @@
                         this.context = data.context;
 
                         if (data.intents && data.intents.length === 1) {
+                            // get further information about weather, food news, music news or sport news depending
+                            // on the intent responded from the API
                             let intent = data.intents[0];
                             if (intent.intent === 'weather') {
                                 let date = null;
@@ -299,13 +349,19 @@
                                         isNewsInfo: false,
                                         data: data
                                     });
+
+                                    this.$refs.chatContent.scrollTop = this.$refs.chatContent.scrollHeight;
                                 });
                             } else {
-                                if (intent.intent === 'select_music_genre') {
+                                if (intent.intent === 'select_music_genre'
+                                    || intent.intent === 'select_food_cuisine'
+                                    || intent.intent === 'select_sport_game') {
                                     let cat = '';
                                     let keyword = '';
                                     for (let entity of data.entities) {
-                                        if (entity.entity === 'music_genre') {
+                                        if (entity.entity === 'music_genre'
+                                            || entity.entity === 'food_cuisine'
+                                            || entity.entity === 'sport_activities') {
                                             keyword = entity.value;
                                         } else {
                                             if (entity.entity === 'type') {
@@ -313,8 +369,9 @@
                                             }
                                         }
                                     }
+
+                                    // request news
                                     this.getCelebrationsAndActivities(cat, keyword).then(data => {
-                                        console.log(data);
                                         this.messages.push({
                                             text: this.userMessage,
                                             isUser: true,
@@ -322,6 +379,8 @@
                                             isNewsInfo: true,
                                             data: data.results
                                         });
+
+                                        this.$refs.chatContent.scrollTop = this.$refs.chatContent.scrollHeight;
                                     });
                                 }
                             }
@@ -329,6 +388,12 @@
                     });
             },
 
+            /**
+             * call request news API
+             * @param cat
+             * @param keyword
+             * @returns {PromiseLike<TResult2|TResult1>|PromiseLike<TResult|T>|PromiseLike<T>|PromiseLike<TResult>}
+             */
             getCelebrationsAndActivities(cat = '', keyword = '') {
                 let params = {
                     'city': this.address
@@ -351,10 +416,13 @@
         created() {
             this.articles = [];
             this.getCurrentPosition();
+
+            // get the welcome message
             this.sendMessage();
         },
 
         mounted(){
+            // focus on the input chat box
             this.$refs.input.focus();
         }
     }

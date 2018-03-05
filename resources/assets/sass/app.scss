@@ -1,7 +1,9 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600:700");
+
 // Variables
 @import "variables";
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -193,6 +195,12 @@
   }
 }
 
+.upper-right-box {
+  position: absolute;
+  right: 0;
+  text-align: right;
+}
+
 .chat-form {
   display: flex;
   justify-content: space-between;
@@ -235,5 +243,36 @@
     height: 180px;
     background-size: cover;
     background-position: center;
+  }
+}
+
+.clock {
+  background: #fff;
+  border-radius: .5rem;
+  display: inline-block;
+  margin-bottom: 1em;
+
+  &-hours, &-minutes, &-seconds {
+    background: linear-gradient(to bottom, #26303b 50%, #2c3540 50%);
+    display: inline-block;
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 300;
+    padding: .5rem 1rem;
+    text-align: center;
+    position: relative;
+  }
+
+  &-hours {
+    border-right: .15rem solid #fff;
+    border-radius: .5rem 0 0 .5rem;
+  }
+
+  &-minutes {
+    border-right: .15rem solid #fff;
+  }
+
+  &-seconds {
+    border-radius: 0 .5rem .5rem 0;
   }
 }
