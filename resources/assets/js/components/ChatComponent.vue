@@ -77,9 +77,8 @@
                     <canvas class="weather-icon" width="128" height="128"></canvas>
                 </div>
 
-
                 <div class="articles-wrapper" v-if="articles">
-                    <h2>Recent News in Area</h2>
+                    <h2>Recent News in Town</h2>
                     <div class="articles">
                         <div class="row">
                             <div v-for="article in articles" class="col-6">
@@ -170,6 +169,7 @@
                             });
                         }
 
+                        // remove an article at the end if the number of article is odd
                         if (this.articles.length % 2 === 1) {
                             this.articles.splice(-1, 1);
                         }

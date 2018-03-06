@@ -23,8 +23,8 @@
                 </div>
                 <div class="info">
                     <div class="summary">{{ summary }}</div>
-                    <div class="wind-speed">Wind Speed : {{ windSpeed }}</div>
-                    <div class="humidity">Humidity : {{ humidity * 100 }}%</div>
+                    <div class="wind-speed">Wind Speed : {{ windSpeed.toFixed(2) }}</div>
+                    <div class="humidity">Humidity : {{ Math.round(humidity * 100) }}%</div>
                     <div class="visibility">Visibility : {{ visibility }}</div>
                 </div>
             </div>
