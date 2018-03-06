@@ -154,3 +154,43 @@ Route::get('activities-celebrations', function(Request $request) {
     return response($response->getBody()->getContents(), $response->getStatusCode(),
         ['Content-Type' => $response->getHeader('Content-Type')]);
 });
+
+/**
+ * GET request to search general documents when user input an out of scope question
+ */
+Route::get('general-articles', function(Request $request) {
+    $query = $request->get('query');
+
+    // get IBM Conversation API configuration
+    $baseUrl = env('WATSON_DISCOVERY_BASE_URL', '');
+    $environmentId = env('WATSON_DISCOVERY_ENVIRONMENT', '');
+    $collectionId = env('WATSON_DISCOVERY_COLLECTION_ID', '');
+    $username = env('WATSON_DISCOVERY_API_CREDENTIAL_USERNAME', '');
+    $password = env('WATSON_DISCOVERY_API_CREDENTIAL_PASSWORD', '');
+
+    // use natural language query
+    $params = [
+        'deduplicate' => 'true',
+        'query' => $query,
+        'highlight' => 'true',
+        'version' => date('Y-m-d'), // get today version
+        'similar' => 'false',
+        'count' => 20
+    ];
+
+    // send request
+    $client = new Client();
+    $response = $client->get($baseUrl . '/v1/environments/' . $environmentId . '/collections/' . $collectionId . '/query',
+        [
+            'query' => $params,
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ],
+            'auth' => [$username, $password]
+        ]
+    );
+
+    // return the response from the API to client
+    return response($response->getBody()->getContents(), $response->getStatusCode(),
+        ['Content-Type' => $response->getHeader('Content-Type')]);
+});

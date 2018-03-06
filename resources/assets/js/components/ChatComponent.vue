@@ -43,7 +43,7 @@
                 </div>
                 <div class="chat-input">
                     <form class="chat-form" @submit="enterMessage($event)">
-                        <input type="text" v-model="userMessage" ref="input" />
+                        <input type="text" v-model="userMessage" ref="input" placeholder="Type something ..." />
                         <button class="btn btn-primary" @click="enterMessage">
                             <i class="fas fa-arrow-right"></i>
                         </button>
@@ -382,6 +382,21 @@
 
                                         this.$refs.chatContent.scrollTop = this.$refs.chatContent.scrollHeight;
                                     });
+                                } else {
+                                    if (intent.intent === 'out_of_scope') {
+                                        // request news
+                                        this.getGeneralArticles(msg).then(data => {
+                                            this.messages.push({
+                                                text: this.userMessage,
+                                                isUser: true,
+                                                isWeatherInfo: false,
+                                                isNewsInfo: true,
+                                                data: data.results
+                                            });
+
+                                            this.$refs.chatContent.scrollTop = this.$refs.chatContent.scrollHeight;
+                                        });
+                                    }
                                 }
                             }
                         }
@@ -410,6 +425,23 @@
                         return response.json();
                     }
                 );
+            },
+
+            /**
+             * get general articles when user input a question out of scope
+             * @param query
+             * @returns {PromiseLike<T>|PromiseLike<TResult2|TResult1>|PromiseLike<TResult>|PromiseLike<TResult|T>}
+             */
+            getGeneralArticles(query = '') {
+                let params = {
+                    'query': query
+                };
+
+                return this.$http.get('/api/general-articles',{params: params})
+                    .then(response => {
+                            return response.json();
+                        }
+                    );
             }
         },
 
