@@ -49,12 +49,16 @@ You can setup to automatically deploy your source code whenever there is a new p
 ## Further help
 To get more help about deploying a Laravel App to IBM cloud, please checkout 
 >[Bluemix Laravel Demo](https://github.com/ibmjstart/Bluemix-Laravel-Demo)
+
 >[Laravel on Bluemix](https://github.com/tarikgan/laravel-on-bluemix)
+
 >[Watson Discovery News documentation](https://console.bluemix.net/docs/services/discovery/watson-discovery-news.html#watson-discovery-news)
+
 >[Watson Conversation documentation](https://console.bluemix.net/docs/services/conversation/index.html#about)
 
 ### Application Demo
 [Demo](https://dang.mybluemix.net/)
+
 [Video Demo](https://drive.google.com/file/d/1YUvnCzxrgRHiI8OG82Y5oMiVMegUPEdN/view)
 
 ### Environment and configuration files
@@ -64,8 +68,12 @@ Please find the env configuration files
 
 ### 3rd party libraries used
 > [Guzzle, PHP HTTP client](http://docs.guzzlephp.org/en/stable/)
+
 > [Laravel Dark Sky](https://packagist.org/packages/naughtonium/laravel-dark-sky)
+
 > [Skycons](https://darkskyapp.github.io/skycons/)
+
 > [FontAwesome](https://fontawesome.com/)
+
 > [Google Font Nunito](https://fonts.google.com/specimen/Nunito)
  
