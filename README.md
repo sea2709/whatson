@@ -13,6 +13,7 @@ This app is build by [Laravel 5.6](https://laravel.com/docs/5.6)
 > Ctype PHP Extension
 > JSON PHP Extension
 
+> Composer to install packages
 > Google Map API key which allow to use Google Maps Geocoding API
 > [DarkSky](https://darksky.net/dev) API key to get weather information 
 > Credentials of [IBM Watson Discovery Service](https://www.ibm.com/watson/services/discovery/) (username, password, URL and workspace ID)
@@ -52,14 +53,19 @@ To get more help about deploying a Laravel App to IBM cloud, please checkout
 >[Watson Discovery News documentation](https://console.bluemix.net/docs/services/discovery/watson-discovery-news.html#watson-discovery-news)
 >[Watson Conversation documentation](https://console.bluemix.net/docs/services/conversation/index.html#about)
 
+### Application Demo
+[Demo](https://dang.mybluemix.net/)
+[Video Demo](https://drive.google.com/file/d/1YUvnCzxrgRHiI8OG82Y5oMiVMegUPEdN/view)
+
 ### Environment and configuration files
 Please find the env configuration files 
 > `.env` config file for development environment
 > `manifest.yml` config file for IBM cloud configuration and application configuration (which is inside the env configuration)
 
-## 3rd party libraries used
+### 3rd party libraries used
 > [Guzzle, PHP HTTP client](http://docs.guzzlephp.org/en/stable/)
 > [Laravel Dark Sky](https://packagist.org/packages/naughtonium/laravel-dark-sky)
 > [Skycons](https://darkskyapp.github.io/skycons/)
 > [FontAwesome](https://fontawesome.com/)
 > [Google Font Nunito](https://fonts.google.com/specimen/Nunito)
+ 
